@@ -33,7 +33,7 @@ sub new {
 	my $self = {
 		_rpc_id => 0,
 		private => {}, # reserved for subclasses
-		defaults(),
+		_defaults(),
 		@_
 	};
 	bless($self, $class);
