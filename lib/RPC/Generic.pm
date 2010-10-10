@@ -19,6 +19,7 @@ use strict;
 use warnings;
 
 our $VERSION = '0.1';
+use RPC::Generic::Serializer;
 
 =over
 
@@ -113,28 +114,6 @@ sub _rpc_response {
 	my ($self, $id, $result, $error) = @_;
 	# allow $id to be a rpc_request hash
 	return {id => (ref($id) ? $id->{id} : $id), result => $result, error => $error};
-}
-
-=item _serialize EXPR
-
-Serialize the provided data into a common format.
-
-=cut
-
-sub _serialize {
-	# just stringify (not useful... this should be overwritten by subclasses)
-	return "$_[1]";
-}
-
-=item _deserialize EXPR
-
-Deserialize the provided data from the common format into a data structure.
-
-=cut
-
-sub _deserialize {
-	# most deserializers will return a reference, so be consistent
-	return \$_[1];
 }
 
 # NOTE: no need for generic DESTROY; it will be called automatically on sub-objects
