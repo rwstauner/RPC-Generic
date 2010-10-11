@@ -58,7 +58,7 @@ Generic method for requesting the server to run METHOD with provided PARAMETERS.
 
 sub _rpc {
 	my ($self, $method, @params) = @_;
-	my $remote = $self->remote();
+	my $remote = $self->_remote();
 	my $response;
 	my $request = $self->_rpc_request($method, @params);
 	eval {

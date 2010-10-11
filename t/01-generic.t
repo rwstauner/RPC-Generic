@@ -16,7 +16,7 @@ plan tests => 4 * $times;
 	use parent 'RPC::Generic';
 	use RPC::Generic::Serializer::StorableN;
 
-	sub remote {
+	sub _remote {
 		$_[0]->{remote} ||= TestEcho->new();
 	}
 
