@@ -11,13 +11,14 @@ package RPC::Generic;
 	package main;
 
 	$mine = MyRPC->new(option => 'value');
-	$data = $mine->rpc('method', @parameters);
+	$data = $mine->_rpc('method', @parameters);
 
 =cut
 
 use strict;
 use warnings;
 
+# start with base serializer, but expect classes to overload
 use RPC::Generic::Serializer;
 
 =over
@@ -25,6 +26,8 @@ use RPC::Generic::Serializer;
 =item new LIST
 
 Instantiate RPC object.  Optional LIST of key/value pairs overwrites defaults.
+
+Options are defined by subclasses.
 
 =cut
 
@@ -71,10 +74,11 @@ sub _rpc {
 	return $response;
 }
 
-=item _rpc_error
+=item _rpc_error EXPR
 
 Return an error in the desired format.
 Allows subclasses to easily overwrite and create Exception objects if desired.
+Default simply returns I<EXPR>.
 
 =cut
 
@@ -84,7 +88,8 @@ sub _rpc_error {
 
 =item _rpc_id
 
-Get a new id to use with a new request.
+Return a new id to use with a new request.
+Defaults to incrementing an integer.
 
 =cut
 
