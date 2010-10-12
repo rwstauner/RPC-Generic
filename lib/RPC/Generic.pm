@@ -21,11 +21,7 @@ use warnings;
 # start with base serializer, but expect classes to overload
 use RPC::Generic::Serializer;
 
-=head1 METHODS
-
-=over
-
-=item new LIST
+=method new LIST
 
 Instantiate RPC object.  Optional I<LIST> of key/value pairs overwrites defaults.
 
@@ -46,7 +42,7 @@ sub new {
 
 # TODO: AUTOLOAD
 
-=item _defaults
+=method _defaults
 
 Return a list (hash) of default options to be used at initialization.
 
@@ -54,7 +50,7 @@ Return a list (hash) of default options to be used at initialization.
 
 sub _defaults { () }
 
-=item _rpc METHOD,PARAMETERS
+=method _rpc METHOD,PARAMETERS
 
 Generic method for requesting the server to run I<METHOD> with provided I<PARAMETERS>.
 
@@ -76,7 +72,7 @@ sub _rpc {
 	return $response;
 }
 
-=item _rpc_error EXPR
+=method _rpc_error EXPR
 
 Return an error in the desired format.
 Allows subclasses to easily overwrite and create Exception objects if desired.
@@ -88,7 +84,7 @@ sub _rpc_error {
 	return $_[1]; # just return the argument.  stub for subclasses
 }
 
-=item _rpc_id
+=method _rpc_id
 
 Return a new id to use with a new request.
 Defaults to incrementing an integer.
@@ -99,7 +95,7 @@ sub _rpc_id {
 	++$_[0]->{_rpc_id};
 }
 
-=item _rpc_request METHOD,PARAMETERS
+=method _rpc_request METHOD,PARAMETERS
 
 Return an RPC request object for the given I<METHOD> and I<PARAMETERS>.
 
@@ -110,7 +106,7 @@ sub _rpc_request {
 	return {id => $self->_rpc_id, method => $method, params => [@params]};
 }
 
-=item _rpc_response ID,RESULT,ERROR
+=method _rpc_response ID,RESULT,ERROR
 
 Return an RPC response object.
 
