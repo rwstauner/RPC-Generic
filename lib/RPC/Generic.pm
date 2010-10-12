@@ -21,11 +21,13 @@ use warnings;
 # start with base serializer, but expect classes to overload
 use RPC::Generic::Serializer;
 
+=head1 METHODS
+
 =over
 
 =item new LIST
 
-Instantiate RPC object.  Optional LIST of key/value pairs overwrites defaults.
+Instantiate RPC object.  Optional I<LIST> of key/value pairs overwrites defaults.
 
 Options are defined by subclasses.
 
@@ -54,7 +56,7 @@ sub _defaults { () }
 
 =item _rpc METHOD,PARAMETERS
 
-Generic method for requesting the server to run METHOD with provided PARAMETERS.
+Generic method for requesting the server to run I<METHOD> with provided I<PARAMETERS>.
 
 =cut
 
@@ -99,7 +101,7 @@ sub _rpc_id {
 
 =item _rpc_request METHOD,PARAMETERS
 
-Return an RPC request object for the given method and parameters.
+Return an RPC request object for the given I<METHOD> and I<PARAMETERS>.
 
 =cut
 
