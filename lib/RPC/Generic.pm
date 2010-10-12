@@ -18,7 +18,6 @@ package RPC::Generic;
 use strict;
 use warnings;
 
-our $VERSION = '0.1';
 use RPC::Generic::Serializer;
 
 =over
