@@ -6,12 +6,12 @@ plan tests => 4 * $times;
 	package TestEcho;
 	use overload
 		'bool' => sub { $_[0] }, # allow ||= operator
-		'<>' => \&getline; # emulate IO
+		'<>' => \&readline; # emulate IO
 
 	# echo server for easy testing
 	sub new { bless [], $_[0]; }
 	sub print { $_[0]->[0] = $_[1]; }
-	sub getline { $_[0]->[0]; }
+	sub readline { $_[0]->[0]; }
 }
 
 {
