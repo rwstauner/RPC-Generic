@@ -1,4 +1,5 @@
 package RPC::Generic::Serializer::DynamicDumpLoad;
+# ABSTRACT: Serializer that uses Dump() and Load() from specified module
 use strict;
 use warnings;
 use parent 'RPC::Generic::Serializer';

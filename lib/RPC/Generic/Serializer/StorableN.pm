@@ -1,4 +1,5 @@
 package RPC::Generic::Serializer::StorableN;
+# ABSTRACT: Serialzer that uses nfreeze() and thaw() from Storable
 use strict;
 use warnings;
 use Storable ();

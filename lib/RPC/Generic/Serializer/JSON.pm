@@ -1,4 +1,5 @@
 package RPC::Generic::Serializer::JSON;
+# ABSTRACT: Serialzer that uses JSON module
 use strict;
 use warnings;
 use JSON ();

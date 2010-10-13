@@ -1,4 +1,5 @@
 package RPC::Generic::Serializer::YAML_Any;
+# ABSTRACT: Serializer that uses YAML::Any
 use strict;
 use warnings;
 use YAML::Any ();

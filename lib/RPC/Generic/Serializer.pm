@@ -1,4 +1,5 @@
 package RPC::Generic::Serializer;
+# ABSTRACT: Base class for Serializers; exports _serialize() and _deserialize()
 use strict;
 use warnings;
 

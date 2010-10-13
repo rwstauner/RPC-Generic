@@ -1,4 +1,5 @@
 package RPC::Generic::Serializer::DynamicFreezeThaw;
+# ABSTRACT: Serializer that uses freeze() and thaw() from specified module
 use strict;
 use warnings;
 use parent 'RPC::Generic::Serializer';
