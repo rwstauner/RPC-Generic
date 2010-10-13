@@ -1,4 +1,4 @@
-use Test::More tests => 2;
+use Test::More tests => 2 * 2;
 
 PACK: {
 	package TestRPC;
@@ -6,8 +6,14 @@ PACK: {
 	use RPC::Generic::Serializer::StorableN;
 }
 
-my $rpc = TestRPC->new();
-is($rpc->_message_class, 'RPC::Generic::Message', 'generic class');
+sub try_it ($) {
+	my ($expected) = @_;
+	my $rpc = TestRPC->new();
+	is($rpc->_message_class, $expected, "found $expected");
+	isa_ok($rpc->_message_class->new(), $expected, "instantiate $expected");
+}
+
+try_it 'RPC::Generic::Message';
 
 PACK: {
 	package TestRPC::Message;
@@ -20,5 +26,4 @@ PACK: {
 	}
 }
 
-$rpc = TestRPC->new();
-is($rpc->_message_class, 'TestRPC::Message', 'subclass');
+try_it 'TestRPC::Message';
