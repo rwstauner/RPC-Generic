@@ -1,6 +1,6 @@
 use Test::More;
 my $times = 3;
-plan tests => 4 * $times;
+plan tests => (4 * $times) + 1;
 
 {
 	package TestEcho;
@@ -20,12 +20,17 @@ plan tests => 4 * $times;
 		$_[0]->{remote} ||= TestEcho->new();
 	}
 
+	sub _defaults {
+		(test => 'goober')
+	}
+
 	# so we can test the id's later
 	our $rpc_id = 0;
 	sub _rpc_id { ++$rpc_id; }
 }
 
 my $rpc = TestRPC->new();
+is($rpc->{test}, 'goober', 'default arguments');
 
 foreach (1 .. $times){
 	my ($method, @params) = ('foo', 'bar', $_, 'cheese');
