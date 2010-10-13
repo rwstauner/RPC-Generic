@@ -32,14 +32,17 @@ Options are defined by subclasses.
 
 sub new {
 	my $class = shift;
-	my $self = {
+	# class must be blessed before we can reach the inherited _defaults()
+	my $self = bless({}, $class);
+	my $args = {
 		_rpc_id => 0,
 		private => {}, # reserved for subclasses
 		remote 	=> undef, # establish a slot for caching the remote
-		_defaults(),
+		$self->_defaults(),
 		@_
 	};
-	bless($self, $class);
+	$self->{$_} = $args->{$_} foreach keys %$args;
+	return $self;
 }
 
 # TODO: AUTOLOAD
