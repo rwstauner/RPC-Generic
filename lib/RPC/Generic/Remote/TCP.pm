@@ -40,13 +40,15 @@ sub _remote {
 
 sub print {
 	my ($self, $str) = @_;
-	$self->SUPER::print(length("$str") . "\n$str");
+	$self->SUPER::print(__PACKAGE__ . '-' . length("$str") . "\n$str");
 }
 
 sub getline {
 	my ($self) = @_;
 	local $/ = "\n";
 	my $length = $self->SUPER::getline();
+	$length =~ s/^${\ __PACKAGE__ }-(\d+)$/$1/
+		or return $length;
 	$/ = \$length;
 	$self->SUPER::getline();
 }
