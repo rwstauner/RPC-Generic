@@ -34,6 +34,7 @@ sub new {
 	my $self = {
 		_rpc_id => 0,
 		private => {}, # reserved for subclasses
+		remote 	=> undef, # establish a slot for caching the remote
 		_defaults(),
 		@_
 	};
@@ -148,6 +149,21 @@ sub _rpc_response {
 	my $self = shift;
 	return $self->_message_class->response(@_);
 }
+
+=method _remote_parameters
+
+Return parameters necessary to initialize a subclass of
+L<RPC::Generic::Remote|RPC::Generic::Remote>.
+
+The default stub returns an empty list.
+Subclasses should overwrite this method to return something meaningful
+for the remote of your choice.
+
+See L<RPC::Generic::Remote::TCP> for an example.
+
+=cut
+
+sub _remote_parameters { () }
 
 # NOTE: no need for generic DESTROY; it will be called automatically on sub-objects
 
