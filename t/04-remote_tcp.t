@@ -14,7 +14,7 @@ my @test_data = (
 இୱ𐏊⣉؇떾쑜흂ੴᾟीஙொோᚏൊᛤ◪✞ᐒᙲ⣷௵௴௺ൣឈஔऔꙬꙪꙮ‱⌫⌨𐎯ୋ
 	" x 10_001 # cool-looking characters from character map (works x 1_000_000)
 );
-plan tests => 2 * @test_data;
+plan tests => 2 * (@test_data + 1);
 
 our %socket = (qw(host localhost port), ($ENV{TEST_TCP_PORT} || 50000));
 
@@ -31,6 +31,8 @@ our %socket = (qw(host localhost port), ($ENV{TEST_TCP_PORT} || 50000));
 	}
 }
 
+sub unknown { 'Unknown RPC: ' . $_[0]; }
+
 my $rpc = TestTCPRPC->new(%socket);
 my $Message = $rpc->_message_class;
 
@@ -44,6 +46,9 @@ if( $pid = fork ){
 	is_deeply($res->{result}, [$data, $t]);
 	is($res->{error}, undef);
   }
+	my $res = $rpc->_rpc('oops', ':-P');
+	is($res->{result}, undef);
+	is($res->{error}, unknown('oops'));
 	wait;
 } else {
 	die("Failed to fork: $!") unless defined($pid);
@@ -57,13 +62,13 @@ if( $pid = fork ){
 	$server->autoflush(1);
 
 	if( my $client = $server->accept('RPC::Generic::Remote::TCP') ){
-  foreach ( 1 .. @test_data ){
+  foreach ( 1 .. @test_data + 1 ){
 		$client->autoflush(1);
 		my $req = $Message->request($client->getline);
 		my $res = $Message->response($req,
 			$req->{method} eq 'echo' ?
 				($req->{params}, undef) :
-				(undef, "Unknown rpc")
+				(undef, unknown($req->{method}))
 			);
 		$client->print($res);
   }
