@@ -4,7 +4,7 @@ use utf8;
 use POSIX ':sys_wait_h';
 use Test::More;
 
-plan skip_all => 'TEST_TCP_PORT set to 0' if $ENV{TEST_TCP_PORT} eq '0';
+plan skip_all => 'TEST_TCP_PORT set to false' if defined($ENV{TEST_TCP_PORT}) && !$ENV{TEST_TCP_PORT};
 
 my @test_data = (
 	localtime() . " | héllÖ Ɫ ܗ\n",
