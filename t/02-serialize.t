@@ -21,11 +21,7 @@ MOD: foreach my $serializer ( @serializers ){
 	use parent 'RPC::Generic';
 	eval "require $class";
 SKIP: {
-	if( $class =~ /Dynamic([A-Z][a-z]+)([A-Z][a-z]+)/ ){
-		# avoid 'redefinition errors'
-		no strict 'refs';
-		undef &{"${class}::". ($$serializer[$_] || $$_) } foreach 1 .. 2;
-	}
+	# TODO: no warnings 'redefine' if( $class =~ /Dynamic([A-Z][a-z]+)([A-Z][a-z]+)/ );
 	eval { $class->import(@$serializer) };
 	skip("module $class failed import with: @$serializer", $tests_each) if $@;
 
