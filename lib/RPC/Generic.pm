@@ -93,8 +93,7 @@ sub _rpc {
 	eval {
 		# explicitly stringify in case remote doesn't
 		$remote->print("$request");
-		local $/;
-		$response = $self->_rpc_response(<$remote>);
+		$response = $self->_rpc_response($remote->getline);
 	};
 	if(my $e = $@){
 		$response = $self->_rpc_response($request, undef, $self->_rpc_error($e));
