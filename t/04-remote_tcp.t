@@ -4,6 +4,8 @@ use utf8;
 use POSIX ':sys_wait_h';
 use Test::More;
 
+plan skip_all => 'TEST_TCP_PORT set to 0' if $ENV{TEST_TCP_PORT} eq '0';
+
 my @test_data = (
 	localtime() . " | héllÖ Ɫ ܗ\n",
 	[1 .. 20],
@@ -14,7 +16,7 @@ my @test_data = (
 );
 plan tests => 2 * @test_data;
 
-our %socket = (qw(host localhost port), ($ENV{TEST_PORT} || 50000));
+our %socket = (qw(host localhost port), ($ENV{TEST_TCP_PORT} || 50000));
 
 {
 	package TestTCPRPC;
