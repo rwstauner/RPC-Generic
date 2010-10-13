@@ -23,7 +23,8 @@ use RPC::Generic::Serializer;
 
 =method new LIST
 
-Instantiate RPC object.  Optional I<LIST> of key/value pairs overwrites defaults.
+Instantiate RPC object.
+Optional I<LIST> of key/value pairs overwrites defaults.
 
 Options are defined by subclasses.
 

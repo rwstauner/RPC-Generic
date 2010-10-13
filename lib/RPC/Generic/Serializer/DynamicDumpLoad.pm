@@ -9,7 +9,8 @@ use parent 'RPC::Generic::Serializer';
 This is an example of an L<RPC::Generic::Serializer>.
 
 It, too, is generic.
-It [de]serializes using (yet undefined) functions named C<Dump()> and C<Load()>.
+It [de]serializes using (yet undefined)
+functions named C<Dump()> and C<Load()>.
 
 You can choose which module's C<Dump()> and C<Load()> functions to use
 by passing the module name as the first argument to "use":

@@ -9,7 +9,8 @@ use parent 'RPC::Generic::Serializer';
 This is an example of an L<RPC::Generic::Serializer>.
 
 It, too, is generic.
-It [de]serializes using (yet undefined) functions named C<freeze()> and C<thaw()>.
+It [de]serializes using (yet undefined)
+functions named C<freeze()> and C<thaw()>.
 
 You can choose which module's C<freeze()> and C<thaw()> functions to use
 by passing the module name as the first argument to "use":

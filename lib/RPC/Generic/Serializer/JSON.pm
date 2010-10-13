@@ -7,7 +7,8 @@ use parent 'RPC::Generic::Serializer';
 
 =head1 SYNOPSIS
 
-Use L<JSON|JSON>'s C<encode_json()> and C<decode_json()> methods for serialization.
+Use L<JSON|JSON>'s C<encode_json()> and C<decode_json()>
+methods for serialization.
 
 	package MyRPC;
 	use parent 'RPC::Generic';
