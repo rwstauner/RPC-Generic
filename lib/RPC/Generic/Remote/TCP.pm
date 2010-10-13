@@ -38,6 +38,19 @@ sub _remote {
 	) or die("Remote TCP connection failed: $!");
 }
 
+sub print {
+	my ($self, $str) = @_;
+	$self->SUPER::print(length("$str") . "\n$str");
+}
+
+sub getline {
+	my ($self) = @_;
+	local $/ = "\n";
+	my $length = $self->SUPER::getline();
+	$/ = \$length;
+	$self->SUPER::getline();
+}
+
 # nothing else is needed since this already inherits from IO
 
 1;
