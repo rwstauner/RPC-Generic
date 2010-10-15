@@ -47,6 +47,7 @@ sub getline {
 	my ($self) = @_;
 	local $/ = "\n";
 	my $length = $self->SUPER::getline();
+	return unless defined $length;
 	$length =~ s/^${\ __PACKAGE__ }-(\d+)$/$1/
 		or return $length;
 	$/ = \$length;
