@@ -15,7 +15,7 @@ package TestRPC;
 use Test::More;
 plan tests => $tests_each * @serializers;
 
-MOD: foreach my $serializer ( @serializers ){
+foreach my $serializer ( @serializers ){
 	my $class = shift(@$serializer);
 
 	use parent 'RPC::Generic';
