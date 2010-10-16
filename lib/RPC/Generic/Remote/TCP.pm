@@ -62,5 +62,6 @@ sub getline {
 
 =for :list
 * L<IO::Socket::INET>.
+* L<perlipc>
 
 =cut
