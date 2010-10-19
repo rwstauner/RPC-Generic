@@ -35,7 +35,7 @@ sub _remote {
 	$self->{remote} ||= __PACKAGE__->new(
 		Proto => 'tcp',
 		$self->_remote_parameters()
-	) or die("Remote TCP connection failed: $!");
+	) or die("Remote TCP connection failed: $!\n");
 }
 
 sub print {
