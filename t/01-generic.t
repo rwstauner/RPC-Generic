@@ -1,4 +1,6 @@
-use Test::More;
+use strict;
+use warnings;
+use Test::More 0.96;
 my $times = 3;
 plan tests => (4 * $times) + 1;
 

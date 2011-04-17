@@ -1,3 +1,7 @@
+use strict;
+use warnings;
+use Test::More 0.96;
+
 my @serializers = (
 	[qw(RPC::Generic::Serializer::DynamicDumpLoad YAML::Tiny)],
 	[qw(RPC::Generic::Serializer::DynamicDumpLoad YAML::Syck)],
@@ -12,7 +16,6 @@ my @serializers = (
 my $tests_each = 4;
 
 package TestRPC;
-use Test::More;
 plan tests => $tests_each * @serializers;
 
 foreach my $serializer ( @serializers ){

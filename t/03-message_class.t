@@ -1,4 +1,6 @@
-use Test::More tests => 2 * 2;
+use strict;
+use warnings;
+use Test::More 0.96 tests => 2 * 2;
 
 PACK: {
 	package TestRPC;

@@ -1,8 +1,8 @@
 use strict;
-package main;
+use warnings;
+use Test::More 0.96;
 use utf8;
 use POSIX ':sys_wait_h';
-use Test::More;
 
 plan skip_all => 'TEST_TCP_PORT set to false' if defined($ENV{TEST_TCP_PORT}) && !$ENV{TEST_TCP_PORT};
 
