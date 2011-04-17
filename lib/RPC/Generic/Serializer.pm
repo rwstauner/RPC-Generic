@@ -44,11 +44,13 @@ methods into the I<EXPR> namespace.
 
 =cut
 
+# FIXME: why are we doing this manually?
+# TODO: Use Sub::Exporter or Sub::Install or Exporter or something
 sub copy_methods_to_namespace {
 	my ($class, $namespace) = @_;
 	local $_;
 	no strict 'refs';
-	*{"${namespace}::$_"} = *{"${class}::$_"} foreach qw(_serialize _deserialize);
+	*{"${namespace}::$_"} = \&{"${class}::$_"} foreach qw(_serialize _deserialize);
 }
 
 =item import

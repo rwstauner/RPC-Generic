@@ -27,11 +27,13 @@ use strict;
 use warnings;
 use Carp qw(croak carp);
 
+# FIXME: why are we doing this manually?
+# TODO: Use Sub::Exporter or Sub::Install or Exporter or something
 sub import {
 	my $class = shift;
 	my $caller = caller(); # the package "use"ing this module
 	no strict 'refs';
-	*{"${caller}::_remote"} = *{"${class}::_remote"};
+	*{"${caller}::_remote"} = \&{"${class}::_remote"};
 }
 
 =method _remote
