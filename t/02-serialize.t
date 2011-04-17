@@ -1,5 +1,7 @@
 use strict;
 use warnings;
+
+package TestRPC;
 use Test::More 0.96;
 
 my @serializers = (
@@ -15,7 +17,6 @@ my @serializers = (
 );
 my $tests_each = 4;
 
-package TestRPC;
 plan tests => $tests_each * @serializers;
 
 foreach my $serializer ( @serializers ){
