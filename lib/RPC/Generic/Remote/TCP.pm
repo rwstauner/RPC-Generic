@@ -21,6 +21,7 @@ and caches it on the rpc object.
 
 use strict;
 use warnings;
+use Carp qw(croak carp);
 use parent qw(RPC::Generic::Remote IO::Socket::INET);
 
 =method _remote
@@ -35,7 +36,7 @@ sub _remote {
 	$self->{remote} ||= __PACKAGE__->new(
 		Proto => 'tcp',
 		$self->_remote_parameters()
-	) or die("Remote TCP connection failed: $!\n");
+	) or croak("Remote TCP connection failed: $!");
 }
 
 sub print {

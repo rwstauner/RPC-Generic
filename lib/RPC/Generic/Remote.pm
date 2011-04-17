@@ -25,6 +25,7 @@ See example subclassess in F<RPC/Generic/Remote/*.pm>.
 
 use strict;
 use warnings;
+use Carp qw(croak carp);
 
 sub import {
 	my $class = shift;
@@ -47,7 +48,7 @@ It should return an instance of a Remote.
 =cut
 
 sub _remote {
-	die('_remote() method undefined!  See documentation for ' . __PACKAGE__);
+	croak('_remote() method undefined!  See documentation for ' . __PACKAGE__);
 }
 
 1;

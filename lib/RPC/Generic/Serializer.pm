@@ -2,6 +2,7 @@ package RPC::Generic::Serializer;
 # ABSTRACT: Base class for Serializers; exports _serialize() and _deserialize()
 use strict;
 use warnings;
+use Carp qw(croak carp);
 
 =head1 SYNOPSIS
 
@@ -81,7 +82,7 @@ F<RPC/Generic/Serializer/Dynamic*.pm>
 sub require_module {
 	my ($class, $module) = @_;
 	eval "require $module";
-	die($@) if $@;
+	croak($@) if $@;
 	return $module;
 }
 
