@@ -3,6 +3,7 @@ package RPC::Generic::Serializer::DynamicDumpLoad;
 use strict;
 use warnings;
 use parent 'RPC::Generic::Serializer';
+use Module::Load 0.18 ();
 
 =head1 SYNOPSIS
 
@@ -28,8 +29,9 @@ functions named C<Dump()> and C<Load()> into this namespace.
 sub import {
 	my $class = shift;
 	my $caller = caller();
-	# we need call import() from the correct package
-	$class->require_module(shift)->import(@_);
+  my $mod = shift;
+  Module::Load::load($mod);
+  $mod->import(@_);
 	$class->copy_methods_to_namespace($caller);
 }
 

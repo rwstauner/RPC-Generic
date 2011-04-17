@@ -65,29 +65,6 @@ sub import {
 	$class->copy_methods_to_namespace($caller);
 }
 
-=item require_module EXPR
-
-Require the specified module and return the module name
-so the call can be chained with an C<import()> for ease of [re]use:
-
-	$class->require_module($module)->import(@args);
-
-Useful from the C<import()> function of a subclass to allow a construct like:
-
-	use RPC::Generic::Serializer::subclass qw(Other::Module import args);
-
-See examples of this usage in the included "Dynamic" Serializers:
-F<RPC/Generic/Serializer/Dynamic*.pm>
-
-=cut
-
-sub require_module {
-	my ($class, $module) = @_;
-	eval "require $module";
-	croak($@) if $@;
-	return $module;
-}
-
 =item _serialize EXPR
 
 Serialize EXPR into a common format.
